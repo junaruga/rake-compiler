@@ -14,6 +14,7 @@ module Rake
     attr_writer :cross_config_options
     attr_accessor :no_native
     attr_accessor :config_includes
+    attr_writer :make_opt
 
     def init(name = nil, gem_spec = nil)
       super
@@ -77,6 +78,14 @@ module Rake
           option
         end
       end.flatten
+    end
+
+    def make_opt
+      unless @make_opt
+        @make_opt = ENV['MAKEOPT'] || ''
+      end
+
+      @make_opt
     end
 
     private
@@ -510,14 +519,6 @@ Java extension should be preferred.
       end
 
       nil
-    end
-
-    def make_opt
-      unless @make_opt
-        @make_opt = ENV['MAKEOPT'] || ''
-      end
-
-      @make_opt
     end
 
     def compiled_files

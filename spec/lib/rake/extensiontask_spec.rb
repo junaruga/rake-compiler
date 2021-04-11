@@ -104,6 +104,10 @@ describe Rake::ExtensionTask do
     it "should have cross platform defined to 'i386-mingw32'" do
       @ext.cross_platform.should == 'i386-mingw32'
     end
+
+    it "should have make option" do
+      @ext.make_opt.should be_empty
+    end
   end
 
   context '(tasks)' do
